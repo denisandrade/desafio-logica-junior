@@ -1,0 +1,121 @@
+DENIS OLIVEIRA ANDRADE
+
+1 - RESPOSTA: São necessárias 3 combinações no minímo para descobrir qual é a moeda mais pesada.
+    DETALHES: 
+    1º COMPARAÇÃO:
+    - Coloca 2 filas de 4 moedas cada na balança e verifica qual fileira pesou mais.
+    - Descarta a fileira que pesou menos.
+    2º COMPARAÇÃO:
+    - Pega a fileira que pesou mais na primeira comparação e dividi em 2 fileiras de 2 moedas cada e verifica na balança qual fileira pesou mais.
+    - Descarta a fileira que pesou menos.
+    3º COMPARAÇÃO:
+    - Pega a fileira que pesou mais na segunda comparação, na qual são 2 moedas, e verifica na balança qual moeda pesou mais.
+    - A moeda que pesou mais é a mais pesada entre todas moedas
+
+2 - RESPOSTA: Pelo menos 296 mini cubos terão uma face pintada
+    DETALHES:
+    6x8 = 384 mini cubos no total
+    64x2 = 128
+    6x8 = 48 // 48x2 = 96
+    6x6 = 36 // 36x2 = 72
+    128+96+72 = 296
+
+3 - Dado um array de inteiros ordenados, como encontrar a posição de determinado valor?
+RESPOSTA:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ArrayOrdenado
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Digita o valor a ser encontrado: ");
+            int ValorChave = Convert.ToInt16(Console.ReadLine());
+
+            int tamanho = 9;
+            int[] array = { 3, 4, 5, 7, 9, 11, 12, 17, 20 };
+            int posicao = Posicao(array, tamanho, ValorChave);
+
+            Console.WriteLine("Posição do valor informado é: "+posicao);
+            Console.ReadKey();
+            
+        }
+        public static int Posicao(int[] array, int tamanho, int ValorChave)
+        {   
+            bool achou = false;
+            int posicao = 0, inicio = 0, fim = tamanho;
+            int meio = (inicio + fim) / 2;
+
+            while((inicio <= fim) && (achou == false))
+            {
+                if (array[meio] == ValorChave)
+                {
+                    achou = true;
+                    posicao = meio;
+                }
+                else
+                {
+                    if (ValorChave < array[meio])
+                    {
+                        fim = meio - 1;
+                    }
+                    else
+                    {
+                        inicio = meio + 1;
+                    }
+                    meio = (inicio + fim) / 2;
+                }
+            }
+            return posicao; // Retorna posição do array que contem o valor informado
+            
+        }
+    }
+}
+
+4 - Escreva um código para reverter uma string.
+RESPOSTA:
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ReverterString
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.Write("Informe uma String: ");
+            string string1 = Console.ReadLine();
+
+            string invertido = InverteString(string1);
+            Console.WriteLine("String invertida --> " + invertido);
+            Console.ReadKey();
+           
+            
+        }
+        public static string InverteString(string string1)
+        {
+             string string2="";
+
+            for (int x = string1.Length - 1; x >= 0; x--)
+            {
+                string2 += string1[x];
+            }
+
+            return string2; // retorna string invertida
+
+            
+        }
+    }
+}
+
